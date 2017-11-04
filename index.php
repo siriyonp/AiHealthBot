@@ -8,27 +8,22 @@
   $channel_secret = '7b8abd826a3faa5168785b1220c90586';
 
   //Get message from Line API
-  $content = file_get_contents('php://input'); $events=json_decode($content, true);
-      if (!is_null($events['events'])) { //Loop through each event
-          foreach($events['events']as $event){
-            //Line API send a lot of event type, we interested in message only.
-              if($event['type']=='message' && $event['message']['type']=='text'){
-                //Get replyToken
-                  $replyToken = $event['replyToken'];
-                  //Split message then keep it in database. $appointments=explode(',', $event['message']['text']);
-                    if(count($appointments) == 2) {
-                      $host = 'ec2-54-225-88-191.compute-1.amazonaws.com';
-                      $dbname = 'd4cek5g8tbvd82';
-                      $user = 'vkalaifleiqywc';
+  $content = file_get_contents('php://input');
+  $events=json_decode($content, true);
 
-                      $pass = '9a022e5db970609db6a9c600230b3577bb09168068a94dbdab666edab9d51182';
-                      $connection=newPDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
-                      $params = array('time'=> $appointments[0],
-                                      'content'=> $appointments[1],
-                                     );
-                      $statement=$connection->prepare("INSERT INTO appointments
-                                             (time, content)VALUES(:time, $result = $statement->execute($params);
-                      }
-              }
-        }
-?>
+  if (!is_null($events['events'])) { //Loop through each event
+      foreach($events['events']as $event){
+        //Get replyToken
+        $replyToken = $event['replyToken']; $ask = $event['message']['text'];
+          switch(strtolower($ask)) { case 'm':
+          $respMessage='What sup man.Go away!';
+            break; case 'f':
+          $respMessage='Love you lady.';
+            break; default:
+          $respMessage='What is your sex? M or F'; break;
+}
+  $httpClient = new CurlHTTPClient($channel_token);
+  $bot=newLINEBot($httpClient, array('channelSecret'=> $channel_secret)); $textMessageBuilder = new TextMessageBuilder($respMessage);
+  $response=$bot->replyMessage($replyToken, $textMessageBuilder); }
+
+ ?>
