@@ -21,7 +21,9 @@
           $respMessage='Love you lady.';
             break; default:
           $respMessage='What is your sex? M or F'; break;
-}
+        }
   $httpClient = new CurlHTTPClient($channel_token);
   $bot=newLINEBot($httpClient, array('channelSecret'=> $channel_secret)); $textMessageBuilder = new TextMessageBuilder($respMessage);
-  $response=$bot->replyMessage($replyToken, $textMessageBuilder); }
+  $response=$bot->replyMessage($replyToken, $textMessageBuilder);
+}
+?>
