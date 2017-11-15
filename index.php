@@ -16,11 +16,11 @@
                     $replyToken = $event['replyToken'];
                     //Split message then keep it in database. $appointments=explode(',', $event['message']['text']);
                     if(count($appointments) == 2) {
-                    $host = 'ec2-174-129-223-193.compute-1.amazonaws.com';
-                    $dbname = 'd74bjtc28mea5m';
-                    $user = 'eozuwfnzmgflmu';
+                    $host = 'ec2-54-225-88-191.compute-1.amazonaws.com';
+                    $dbname = 'd4cek5g8tbvd82';
+                    $user = 'vkalaifleiqywc';
 
-                $pass = '2340614a293db8e8a8c02753cd5932cdee45ab90bfcc19d0d306754984cbece1';
+                $pass = '9a022e5db970609db6a9c600230b3577bb09168068a94dbdab666edab9d51182';
                 $connection=newPDO("pgsql:host=$host;dbname=$dbname", $user, $pass);
                 $params = array(
                 'time'=> $appointments[0], 'content'=> $appointments[1],
